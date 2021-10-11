@@ -1,0 +1,9 @@
+.DS_Store
+.project
+.dbbeaver
+.gitignore
+mkimage.sh
+setEnvironment.sh
+createRegistory
+docker-compose.yaml
+image/alpine-ssh.tar
