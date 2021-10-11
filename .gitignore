@@ -1,0 +1,10 @@
+.DS_Store
+.project
+.dbbeaver
+docker-compose.yaml
+setEnvironment.sh
+config/ssmtp.conf
+scripts/ssh_logger.sh
+scripts/firewall-rules.sh
+config/authorized_keys
+image/alpine-ssh.tar
