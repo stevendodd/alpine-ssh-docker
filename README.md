@@ -80,3 +80,5 @@ Run ./mkimage.sh
 * Add your new private Docker registry to Container station preferences
 * Pull stevendodd/alpine-sshd image from your registry via the images screen
 * Create application using docker-compose.yaml on the create screen
+
+All thats left to do is forward external requests on port 22 to the new jump server
