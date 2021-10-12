@@ -17,8 +17,8 @@ Features:
 
 Prerequisites:
 * QTS with Container station (or other Docker host)
-  * Shared volume amount available at: /share/logs/alpine-ssh
+  * Shared volume mount point available at: /share/logs/alpine-ssh
 * Docker installed on Linux/MacOS workstation
-  * Docker daemen configured for insecure repository access `"insecure-registries": ["DOCKERREGISTRY:5000"]`
+  * Docker daemon configured for [insecure repository access](https://docs.docker.com/registry/insecure/) `"insecure-registries": ["DOCKERREGISTRY:5000"]`
 * Personal SSH RSA/DSA key(s)
  
