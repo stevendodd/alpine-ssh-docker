@@ -64,11 +64,11 @@ Either create a file setEnvironment.sh to export the environment variables or up
 | CONTAINERIP | Used when creating docker-compose.yaml - see below |
 
 `[steve@dockerhost ~]$ docker network ls`
-NETWORK ID     NAME                      DRIVER    SCOPE
+`NETWORK ID     NAME                      DRIVER    SCOPE
 f40cf15886f1   bridge                    bridge    local
 cb304d8639bb   host                      host      local
 615cfe4aa1ea   none                      null      local
-b7a88c876158   qnet-static-eth0-XXXXX    qnet      local
+b7a88c876158   qnet-static-eth0-XXXXX    qnet      local`
 
 ##### Create image and docker-compose.yaml and upload image to private Docker registry
 Run ./mkimage.sh 
