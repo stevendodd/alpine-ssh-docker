@@ -4,6 +4,6 @@
 .gitignore
 mkimage.sh
 setEnvironment.sh
-createRegistory
-docker-compose.yaml
-image/alpine-ssh.tar
+createRegistory.sh
+build/docker-compose.yaml
+build/image/alpine-ssh.tar

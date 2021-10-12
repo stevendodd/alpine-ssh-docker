@@ -21,7 +21,7 @@ else
     CONTAINERIP=192.168.0.XX
 fi
 
-cat > docker-compose.yaml <<EOF
+cat > build/docker-compose.yaml <<EOF
  version: '3'
  services:
     alpine-ssh:
@@ -46,7 +46,7 @@ cat > docker-compose.yaml <<EOF
         external: true
 EOF
 
-cat > config/ssmtp.conf <<EOF
+cat > src/config/ssmtp.conf <<EOF
 root=$EMAIL
 mailhub=$SMTPSERVER
 FromLineOverride=YES
@@ -57,7 +57,7 @@ UseSTARTTLS=YES
 hostname=alpine-ssh
 EOF
 
-cat > scripts/firewall-rules.sh <<EOF
+cat > src/scripts/firewall-rules.sh <<EOF
 #!/bin/ash
 
 iptables -A OUTPUT -p tcp --sport ssh -s $CONTAINERHOST -m state --state NEW,ESTABLISHED -j ACCEPT
@@ -68,7 +68,7 @@ iptables -A INPUT -s 61.177.0.0/16 -j DROP
 iptables -L
 EOF
 
-cat > scripts/ssh_logger.sh <<EOF
+cat > src/scripts/ssh_logger.sh <<EOF
 #!/bin/ash
 
 path="/etc/ssh"
@@ -93,17 +93,17 @@ do
 done <"\$fifoFile"
 EOF
 
-echo "$SSHKEY\n$SSHKEYB\n" > config/authorized_keys
+echo "$SSHKEY\n$SSHKEYB\n" > src/config/authorized_keys
 
-chmod go-rwx config/ssmtp.conf
-chmod go-rwx scripts/ssh_logger.sh
-chmod u+x scripts/ssh_logger.sh
-chmod go-rwx scripts/firewall-rules.sh
-chmod u+x scripts/firewall-rules.sh
-chmod 600 config/authorized_keys
+chmod go-rwx src/config/ssmtp.conf
+chmod go-rwx src/scripts/ssh_logger.sh
+chmod u+x src/scripts/ssh_logger.sh
+chmod go-rwx src/scripts/firewall-rules.sh
+chmod u+x src/scripts/firewall-rules.sh
+chmod 600 src/config/authorized_keys
 
 docker build -t stevendodd/alpine-sshd --build-arg USER=$USER --build-arg PASSWORD=$PASSWORD .
-docker save --output image/alpine-sshd.tar stevendodd/alpine-sshd
+docker save --output build/image/alpine-sshd.tar stevendodd/alpine-sshd
 
 docker tag stevendodd/alpine-sshd $DOCKERREGISTRY/stevendodd/alpine-sshd
 docker push $DOCKERREGISTRY/stevendodd/alpine-sshd

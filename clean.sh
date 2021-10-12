@@ -1,8 +1,8 @@
 #!/bin/sh
 
-rm docker-compose.yaml
-rm image/alpine-sshd.tar
-rm config/ssmtp.conf
-rm config/authorized_keys
-rm scripts/ssh_logger.sh	
-rm scripts/firewall-rules.sh
+rm build/docker-compose.yaml
+rm build/image/alpine-sshd.tar
+rm src/config/ssmtp.conf
+rm src/config/authorized_keys
+rm src/scripts/ssh_logger.sh	
+rm src/scripts/firewall-rules.sh
