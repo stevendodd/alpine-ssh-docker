@@ -1,6 +1,7 @@
 #!/bin/sh
 
 source ./clean.sh
+mkdir -p build/image
 
 if [ -f setEnvironment.sh ]
 then
