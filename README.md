@@ -63,12 +63,15 @@ Either create a file setEnvironment.sh to export the environment variables or up
 | CONTAINERMACADDRESS | Used when creating docker-compose.yaml - see below |
 | CONTAINERIP | Used when creating docker-compose.yaml - see below |
 
+iptables currently blocks the container host from polling the SSH port - I think my host checks open ports to dynamically create hyperlinks which generated lots of noise in the logs, it also blocks the range 61.177.0.0/16 as a few bots on that range were trying to hack me. Add additional rules via the terminal or in mkimage.sh
+
 `[steve@dockerhost ~]$ docker network ls`
-`NETWORK ID     NAME                      DRIVER    SCOPE
-f40cf15886f1   bridge                    bridge    local
-cb304d8639bb   host                      host      local
-615cfe4aa1ea   none                      null      local
-b7a88c876158   qnet-static-eth0-XXXXX    qnet      local`
+| NETWORK ID. | NAME | DRIVER | SCOPE |
+| :--- | :--- | :--- | :--- |
+| f40cf15886f1 | bridge | bridge | local |
+| cb304d8639bb. | host | host | local |
+| 615cfe4aa1ea. | none | null | local |
+| b7a88c876158. | qnet-static-eth0-XXXXX | qnet | local |
 
 ##### Create image and docker-compose.yaml and upload image to private Docker registry
 Run ./mkimage.sh 
