@@ -1,24 +1,24 @@
 # docker-alpine-ssh
 
-Create a Containerised SSH Jump Server
+A Containerised [SSH Jump Server](https://wiki.gentoo.org/wiki/SSH_jump_host)
 
 Features:
 * Light weight - based on [Alpine Linux](https://hub.docker.com/_/alpine), Image size less than 15 MB
 * Secure
-  * key based authentication only
+  * [key based authentication only](https://www.cyberciti.biz/faq/how-to-disable-ssh-password-login-on-linux/)
   * limited processes running
   * OS locked down
   * no root access
-  * use of private Docker registry to store image
+  * use of private [Docker registry](https://docs.docker.com/registry/) to store image
 * Auditable - logs are stored on shared volume with timestamp available
 * Fully repeatable/automated install - Docker image, no manual configuration required.
-* Firewall - iptables available to block unwanted traffic
-* Email sent on successful connect
+* Firewall - [iptables](https://en.wikipedia.org/wiki/Iptables) available to block unwanted traffic
+* [Email](https://linux.die.net/man/5/ssmtp.conf) sent on successful connect
 
 Prerequisites:
 * QTS with Container station (or other Docker host)
   * Shared volume amount available at: /share/logs/alpine-ssh
 * Docker installed on Linux/MacOS workstation
   * Docker daemen configured for insecure repository access `"insecure-registries": ["DOCKERREGISTRY:5000"]`
-* SSH RSA/DSA keys
+* Personal SSH RSA/DSA key(s)
  
