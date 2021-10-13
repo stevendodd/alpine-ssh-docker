@@ -1,0 +1,11 @@
+/var/log/auth.log {
+    daily
+    rotate 7
+    missingok
+    compress
+    postrotate
+    	touch /var/log/auth.log
+        chown :wheel /var/log/auth.log
+        chmod 640 /var/log/auth.log
+    endscript
+}

@@ -7,6 +7,7 @@ ARG PASSWORD
 RUN apk add --update openssh \
 && apk add ssmtp \
 && apk add iptables \
+&& apk add fail2ban \
 && rm  -rf /tmp/* /var/cache/apk/*
 
 # add scripts and config
@@ -17,6 +18,9 @@ ADD src/scripts/ssh_logger.sh /usr/local/bin
 ADD src/config/sshd_config /etc/ssh
 ADD src/config/ssmtp.conf /etc/ssmtp
 ADD src/config/motd /etc/motd
+ADD src/config/jail.local /etc/fail2ban/jail.local 
+ADD src/config/alpine-sshd.local /etc/fail2ban/filter.d/alpine-sshd.local
+ADD src/config/auth /etc/logrotate.d/auth
 
 #make sure we get fresh keys
 RUN rm -rf /etc/ssh/ssh_host_rsa_key /etc/ssh/ssh_host_dsa_key

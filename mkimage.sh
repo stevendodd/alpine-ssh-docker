@@ -65,6 +65,8 @@ iptables -A OUTPUT -p tcp --sport ssh -s $CONTAINERHOST -m state --state NEW,EST
 iptables -A INPUT -p tcp --dport 22 -d $CONTAINERHOST -m state --state ESTABLISHED -j ACCEPT
 iptables -A INPUT -p tcp --dport ssh -s $CONTAINERHOST -j DROP
 iptables -A INPUT -s 61.177.0.0/16 -j DROP
+iptables -A INPUT -s 222.186.0.0/16 -j DROP
+iptables -A INPUT -s 222.187.0.0/16 -j DROP
 
 iptables -L
 EOF
@@ -85,7 +87,7 @@ fi
 while true
 do
     if read line; then
-       printf '[%s] %s\\n' "\$(date '+%Y-%m-%d %H:%M:%S')" "\$line" >> "/var/log/sshd_audit_$(date '+%Y-%m-%d').log"
+       printf '[%s] %s\\n' "\$(date '+%Y-%m-%d %H:%M:%S')" "\$line" >> "/var/log/auth.log"
 
        if printf '%s\n' "\$line" | grep -Fqe "Accepted"; then
           echo -e "To: $EMAIL\\nSubject: Alpine SSH Login\\nFrom:$EMAIL\\n\\n\$line\\n" | sendmail -t

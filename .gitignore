@@ -7,4 +7,4 @@ src/config/ssmtp.conf
 src/scripts/ssh_logger.sh
 src/scripts/firewall-rules.sh
 src/config/authorized_keys
-build/image/alpine-ssh.tar
+build/image/alpine-sshd.tar
