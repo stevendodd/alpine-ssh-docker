@@ -4,7 +4,7 @@ touch /var/log/auth.log
 touch /var/log/fail2ban.log
 chmod ugo+r /var/log/auth.log
 chmod ugo+r /var/log/fail2ban.log
-(crontab -l 2>/dev/null; echo "*/55 23 * * * logrotate /etc/logrotate.conf --debug") | crontab -
+(crontab -l 2>/dev/null; echo "*/15 * * * * logrotate /etc/logrotate.conf --debug") | crontab -
 logrotate /etc/logrotate.conf --debug
 
 /usr/local/bin/firewall-rules.sh

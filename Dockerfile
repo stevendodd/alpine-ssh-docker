@@ -15,12 +15,12 @@ ADD src/scripts/docker-entrypoint.sh /usr/local/bin
 ADD src/scripts/firewall-rules.sh /usr/local/bin
 ADD src/scripts/start_sshd.sh /usr/local/bin
 ADD src/scripts/ssh_logger.sh /usr/local/bin
-ADD src/config/sshd_config /etc/ssh
+ADD src/config/etc/ssh/sshd_config /etc/ssh
 ADD src/config/ssmtp.conf /etc/ssmtp
-ADD src/config/motd /etc/motd
-ADD src/config/jail.local /etc/fail2ban/jail.local 
-ADD src/config/alpine-sshd.local /etc/fail2ban/filter.d/alpine-sshd.local
-ADD src/config/auth /etc/logrotate.d/auth
+ADD src/config/etc/motd /etc/motd
+ADD src/config/etc/fail2ban/jail.local /etc/fail2ban 
+ADD src/config/etc/fail2ban/filter.d/alpine-sshd.local /etc/fail2ban/filter.d
+ADD src/config/etc/logrotate.d/auth /etc/logrotate.d
 
 #make sure we get fresh keys
 RUN rm -rf /etc/ssh/ssh_host_rsa_key /etc/ssh/ssh_host_dsa_key

@@ -1,8 +1,0 @@
-[sshd]
-enabled = true
-logpath  = /var/log/auth.log
-datepattern = ^\[%%Y-%%m-%%d %%H:%%M:%%S\] 
-
-[sshd-ddos]
-logpath  = /var/log/auth.log
-datepattern = ^\[%%Y-%%m-%%d %%H:%%M:%%S\] 

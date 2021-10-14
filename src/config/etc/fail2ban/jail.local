@@ -1,0 +1,12 @@
+[sshd]
+enabled = true
+logpath  = /var/log/auth.log
+datepattern = ^\[%%Y-%%m-%%d %%H:%%M:%%S\]
+maxretry = 3
+bantime = 1h
+
+[sshd-ddos]
+logpath  = /var/log/auth.log
+datepattern = ^\[%%Y-%%m-%%d %%H:%%M:%%S\]
+maxretry = 3
+bantime = 1h
