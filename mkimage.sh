@@ -67,6 +67,7 @@ iptables -A INPUT -p tcp --dport ssh -s $CONTAINERHOST -j DROP
 iptables -A INPUT -s 61.177.0.0/16 -j DROP
 iptables -A INPUT -s 222.186.0.0/16 -j DROP
 iptables -A INPUT -s 222.187.0.0/16 -j DROP
+iptables -A INPUT -s 218.92.0.211 -j DROP
 
 iptables -L
 EOF

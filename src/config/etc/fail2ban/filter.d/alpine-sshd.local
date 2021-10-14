@@ -7,3 +7,7 @@ failregex = Failed [-/\w]+ for .* from <HOST> port \d* ssh2
             Unable to negotiate with <HOST> port \d*
             Timeout before authentication for <HOST> port \d*
             Disconnected from invalid user .* <HOST> port \d* \[preauth\]
+            banner exchange: Connection from <HOST> port \d*: invalid format
+            Connection reset by invalid user .* <HOST> port \d* \[preauth\]
+            
+            
