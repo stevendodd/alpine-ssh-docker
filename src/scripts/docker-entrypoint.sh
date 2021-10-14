@@ -16,4 +16,13 @@ fi
 
 chown root:root /var/log
 
-exec "$@"
+touch /var/log/auth.log
+touch /var/log/fail2ban.log
+touch /var/log/startup.log
+
+chmod ugo+r /var/log/auth.log
+chmod ugo+r /var/log/fail2ban.log
+chmod ugo+r /var/log/startup.log
+
+exec "$@" > /var/log/startup.log
+
