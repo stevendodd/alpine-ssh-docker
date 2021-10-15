@@ -24,6 +24,6 @@ echo Starting fail2ban
 echo ============================================
 fail2ban-client start
 fail2ban-client status sshd
-fail2ban-regex -d "\[%Y-%m-%d %H:%M:%S\] " /var/log/auth.log /etc/fail2ban/filter.d/alpine-sshd.local 
+fail2ban-regex --print-all-missed --print-all-ignored -d "\[%Y-%m-%d %H:%M:%S\] " /var/log/auth.log alpine-sshd.local
 
 /bin/sh

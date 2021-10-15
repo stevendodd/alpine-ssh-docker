@@ -19,4 +19,4 @@ echo iptables
 echo =================================
 iptables -L
 
-fail2ban-regex --print-all-missed -d "\[%Y-%m-%d %H:%M:%S\] " /var/log/auth.log /etc/fail2ban/filter.d/alpine-sshd.local
+fail2ban-regex --print-all-missed --print-all-ignored -d "\[%Y-%m-%d %H:%M:%S\] " /var/log/auth.log alpine-sshd.local

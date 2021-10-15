@@ -3,11 +3,18 @@
 failregex = Failed [-/\w]+ for .* from <HOST> port \d* ssh2
             Invalid user .* from <HOST> port \d*
             Received disconnect from <HOST> port \d*:[0-9]+:  \[preauth\]
-            Connection closed by .* <HOST> port \d* \[preauth\]
+            Connection closed by .+ <HOST> port \d* \[preauth\]
             Unable to negotiate with <HOST> port \d*
             Timeout before authentication for <HOST> port \d*
-            Disconnected from <HOST> port \d* \[preauth\]
+            Disconnected from .*<HOST> port \d* \[preauth\]
+            Disconnecting invalid user .* <HOST> port \d*
             banner exchange: Connection from <HOST> port \d*: invalid format
             Connection reset by invalid user .* <HOST> port \d* \[preauth\]
-            
-            
+
+ignoreregex = kex_exchange_identification.*$
+              User root not allowed because account is locked$
+              Connection closed by <HOST> port \d*$
+              Server listening on.*$
+              Accepted publickey for .* from <HOST> port .*$
+              Received disconnect from <HOST> port \d*:\d*: disconnected by user$
+              Disconnected from user .* <HOST> port \d*$
