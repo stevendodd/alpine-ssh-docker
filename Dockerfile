@@ -15,6 +15,8 @@ ADD src/scripts/docker-entrypoint.sh /usr/local/bin
 ADD src/scripts/firewall-rules.sh /usr/local/bin
 ADD src/scripts/start_sshd.sh /usr/local/bin
 ADD src/scripts/ssh_logger.sh /usr/local/bin
+ADD src/scripts/status.sh /usr/local/bin
+
 ADD src/config/etc/ssh/sshd_config /etc/ssh
 ADD src/config/ssmtp.conf /etc/ssmtp
 ADD src/config/etc/motd /etc/motd
