@@ -1,5 +1,8 @@
 FROM alpine
 
+ARG EMAIL
+ENV EMAIL=${EMAIL}
+
 # add openssh, ssmtp and clean
 RUN apk add --update openssh \
 && apk add ssmtp \
@@ -25,7 +28,7 @@ ADD src/config/etc/logrotate.d/auth /etc/logrotate.d
 
 ADD src/config/etc/ssh/ssh_host_* /etc/ssh/
 
-ADD users.tar /home
+ADD src/users.tar /home
 ADD src/scripts/addsshusers.sh /usr/local/bin
 RUN addsshusers.sh
 

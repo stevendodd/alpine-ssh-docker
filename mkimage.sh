@@ -68,40 +68,14 @@ iptables -A INPUT -s 218.92.0.211 -j DROP
 iptables -L
 EOF
 
-cat > src/scripts/ssh_logger.sh <<EOF
-#!/bin/ash
-
-path="/etc/ssh"
-fifoFile="\$path/ssh_fifo"
-
-## Check if pipe exists or fail
-if [[ ! -p \$fifoFile ]];then
-   mkfifo \$fifoFile
-   [[ ! -p \$fifoFile ]] && echo "ERROR: Failed to create FIFO file" && exit 1
-fi
-
-## Monitor the FIFO file and store the SSHD logs
-while true
-do
-    if read line; then
-       printf '[%s] %s\\n' "\$(date '+%Y-%m-%d %H:%M:%S')" "\$line" >> "/var/log/auth.log"
-
-       if printf '%s\n' "\$line" | grep -Fqe "Accepted"; then
-          echo -e "To: $EMAIL\\nSubject: Alpine SSH Login\\nFrom:$EMAIL\\n\\n\$line\\n" | sendmail -t
-       fi
-    fi
-done <"\$fifoFile"
-EOF
-
 chmod go-rwx src/config/ssmtp.conf
 chmod go-rwx src/scripts/ssh_logger.sh
-chmod u+x src/scripts/ssh_logger.sh
 chmod go-rwx src/scripts/firewall-rules.sh
 chmod u+x src/scripts/firewall-rules.sh
 
-tar --exclude='sshjumpuser' -C ./users -cvf users.tar $(cd users ; echo *)
+tar --exclude='sshjumpuser' -C ./users -cvf src/users.tar $(cd users ; echo *)
 
-docker build -t stevendodd/alpine-sshd .
+docker build -t stevendodd/alpine-sshd --build-arg EMAIL=$EMAIL .
 docker save --output build/image/alpine-sshd.tar stevendodd/alpine-sshd
 
 docker tag stevendodd/alpine-sshd $DOCKERREGISTRY/stevendodd/alpine-sshd

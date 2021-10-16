@@ -11,6 +11,8 @@ failregex = Failed [-/\w]+ for .* from <HOST> port \d* ssh2
             banner exchange: Connection from <HOST> port \d*: invalid format
             Connection reset by invalid user .* <HOST> port \d* \[preauth\]
             Received disconnect from <HOST> port \d*:\d*: Bye Bye \[preauth\]
+            maximum authentication attempts exceeded for invalid user .* from <HOST> port \d* ssh2 \[preauth\]
+            
 
 ignoreregex = kex_exchange_identification.*$
               User root not allowed because account is locked$

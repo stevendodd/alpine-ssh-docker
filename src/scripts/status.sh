@@ -1,5 +1,27 @@
 #!/bin/ash
 
+echo date
+echo =================================
+date
+
+echo
+echo fscheck
+echo =================================
+LASTFSCK=`cat /var/log/fscheck`
+FSCK=`find /bin /etc /lib /opt /sbin -exec ls -al {} \; | cksum`
+echo "find /bin /etc /lib /opt /sbin -exec ls -al {} \; | cksum"
+echo $LASTFSCK - Last fsck check
+echo $FSCK - Now
+echo $FSCK > /var/log/fscheck
+
+if [ "$FSCK" != "$LASTFSCK" ]; then
+  STATUS=`cat /var/log/status`
+  CHANGED=`find / -mmin -5 -not -path "/sys/*" -not -path "/proc/*" | xargs ls -al`
+  echo -e "To: ${EMAIL}\nSubject: Alpine SSH Alert\nFrom:${EMAIL}\n\n${STATUS}\n\n${CHANGED}\n" | sendmail -t
+fi
+
+
+echo
 echo processes
 echo =================================
 ps -ef
