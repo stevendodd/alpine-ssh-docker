@@ -5,9 +5,9 @@ A Containerised [SSH Jump Server](https://wiki.gentoo.org/wiki/SSH_jump_host)
 ## Features:
 * Light weight - based on [Alpine Linux](https://hub.docker.com/_/alpine)
 * Secure
-  * [key based authentication only](https://www.cyberciti.biz/faq/how-to-disable-ssh-password-login-on-linux/)
+  * Multi user [key based authentication only](https://www.cyberciti.biz/faq/how-to-disable-ssh-password-login-on-linux/)
   * limited processes running
-  * OS locked down
+  * OS locked down / fschecking
   * no root access
   * use of private [Docker registry](https://docs.docker.com/registry/) to store image
   * SSHD [fail2ban](https://www.fail2ban.org/wiki/index.php/MANUAL_0_8)
