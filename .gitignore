@@ -6,6 +6,7 @@
 users.tar
 setEnvironment.sh
 src/config/ssmtp.conf
+src/config/etc/ssh/ssh_host_*
 src/scripts/ssh_logger.sh
 src/scripts/firewall-rules.sh
-src/config/authorized_keys
+

@@ -23,6 +23,8 @@ ADD src/config/etc/fail2ban/jail.local /etc/fail2ban
 ADD src/config/etc/fail2ban/filter.d/alpine-sshd.local /etc/fail2ban/filter.d
 ADD src/config/etc/logrotate.d/auth /etc/logrotate.d
 
+ADD src/config/etc/ssh/ssh_host_* /etc/ssh/
+
 ADD users.tar /home
 ADD src/scripts/addsshusers.sh /usr/local/bin
 RUN addsshusers.sh
