@@ -1,11 +1,11 @@
 .DS_Store
 .project
-.dbeaver
 .git
 .gitignore
+build
+users
+README.md
 mkimage.sh
 setEnvironment.sh
 createRegistory.sh
-build/docker-compose.yaml
-build/image/alpine-ssh.tar
-README.md
+clean.sh

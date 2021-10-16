@@ -7,10 +7,6 @@ if [ -f setEnvironment.sh ]
 then
   source ./setEnvironment.sh
 else
-    USER=mysshuser
-    PASSWORD=mysshusers-password
-    SSHKEY="ssh-rsa AAAAB3N..."
-    SSHKEYB="ssh-rsa AAAAB3N..."
     EMAIL=myemail@outlook.com
     EMAILPASSWORD="myemail-password"
     SMTPSERVER=smtp-mail.outlook.com:587
@@ -97,16 +93,15 @@ do
 done <"\$fifoFile"
 EOF
 
-echo "$SSHKEY\n$SSHKEYB\n" > src/config/authorized_keys
-
 chmod go-rwx src/config/ssmtp.conf
 chmod go-rwx src/scripts/ssh_logger.sh
 chmod u+x src/scripts/ssh_logger.sh
 chmod go-rwx src/scripts/firewall-rules.sh
 chmod u+x src/scripts/firewall-rules.sh
-chmod 600 src/config/authorized_keys
 
-docker build -t stevendodd/alpine-sshd --build-arg USER=$USER --build-arg PASSWORD=$PASSWORD .
+tar --exclude='sshjumpuser' -C ./users -cvf users.tar $(cd users ; echo *)
+
+docker build -t stevendodd/alpine-sshd .
 docker save --output build/image/alpine-sshd.tar stevendodd/alpine-sshd
 
 docker tag stevendodd/alpine-sshd $DOCKERREGISTRY/stevendodd/alpine-sshd

@@ -1,8 +1,9 @@
 .DS_Store
 .project
-build/
-users/
-!/users/sshjumpuser/*
+/build/
+/users/*
+!/users/sshjumpuser
+users.tar
 setEnvironment.sh
 src/config/ssmtp.conf
 src/scripts/ssh_logger.sh

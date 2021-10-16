@@ -31,14 +31,13 @@ A Containerised [SSH Jump Server](https://wiki.gentoo.org/wiki/SSH_jump_host)
 SSH on to Docker host and run the docker command in createRegistory.sh (Edit script if you don't want to accept the default volume mapping and networking). The script assumes a shared volume/mount point has been created at /share/Container/SharedVolumes/DockerRegistory
 
 A docker container will be created and exposed over a NAT port 5000
+
+##### Add users and authorized_keys
+As per the 'sshjumpuser' example; for each ssh user you would like to grant access, create a folder under the ./users directory (the folder name will become the username) and add their authorized_keys public keys.
  
 ##### Add secrets as environment variables
 Either create a file setEnvironment.sh to export the environment variables or update mkimage.sh
 
-    USER=mysshuser
-    PASSWORD=mysshusers-password
-    SSHKEY="ssh-rsa AAAAB3N..."
-    SSHKEYB="ssh-rsa AAAAB3N..."
     EMAIL=myemail@outlook.com
     EMAILPASSWORD="myemail-password"
     SMTPSERVER=smtp-mail.outlook.com:587
@@ -51,10 +50,6 @@ Either create a file setEnvironment.sh to export the environment variables or up
 
 | VAR | Description |
 | :--- | :--- |
-| USER | The container will be installed with a single SSH user, this is the linux username that will be used. Additional users can be setup manually via the terminal features of the docker host. |
-| PASSWORD | The SSH users password |
-| SSHKEY | The SSH users public key that will be installed in authorized_keys |
-| SSHKEYB | I have two keys, leave blank if not needed |
 | EMAIL | The email address to send connection notifications to, additionally used to send email via ssmtp |
 | EMAILPASSWORD | The email password for ssmtp config |
 | SMTPSERVER | The SMTP server for ssmtp config |
