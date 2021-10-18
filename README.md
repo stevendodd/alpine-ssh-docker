@@ -74,15 +74,13 @@ iptables currently blocks the container host from polling the SSH port - I think
 | b7a88c876158. | qnet-static-eth0-XXXXX | qnet | local |
 
 ##### Optional one command build and deploy
-Either add to setEnvironment.sh to export the environment variables or update controlServer.sh
+Either add to setEnvironment.sh to export the environment variable or update controlServer.sh
 
 	DOCKERUSER=docker
-	CONTAINERHOSTHOMEDIR=/home
 
 | VAR | Description |
 | :--- | :--- |
 | DOCKERUSER | The docker user on your docker host - needs ssh access from your build machine  |
-| CONTAINERHOSTHOMEDIR | The home directory on the docker host |
 
 Run ./controlServer.sh deploy 
 ./controlServer.sh delete

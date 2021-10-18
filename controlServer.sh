@@ -6,11 +6,9 @@ then
 else
 	DOCKERUSER=docker
     CONTAINERHOST=XX.XX.XX.XX
-	CONTAINERHOSTHOMEDIR=/home
 fi
 
-DOCKERUSERHOME=${CONTAINERHOSTHOMEDIR}/${DOCKERUSER}
-RHOME=${DOCKERUSERHOME}/docker-qnap-controller
+RHOME="~/docker-qnap-controller"
 CONTROL=${RHOME}/docker-qnap.sh
 
 
