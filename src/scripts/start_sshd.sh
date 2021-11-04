@@ -3,8 +3,11 @@
 echo Starting crond and adding logrotate job
 echo ============================================
 crond
-(crontab -l 2>/dev/null; echo "15 * * * * logrotate /etc/logrotate.conf --debug") | crontab -
-(crontab -l 2>/dev/null; echo "*/5 * * * * status.sh > /var/log/status") | crontab -
+crontab -l | grep -q status.sh
+if [ $? == 1 ]; then
+  (crontab -l 2>/dev/null; echo "15 * * * * logrotate /etc/logrotate.conf --debug") | crontab -
+  (crontab -l 2>/dev/null; echo "*/5 * * * * status.sh > /var/log/status") | crontab -
+fi
 
 crontab -l
 
@@ -22,6 +25,7 @@ echo ============================================
 echo
 echo Starting fail2ban
 echo ============================================
+rm /var/run/fail2ban/fail2ban.sock 
 fail2ban-client start
 fail2ban-client status sshd
 fail2ban-regex --print-all-missed --print-all-ignored -d "\[%Y-%m-%d %H:%M:%S\] " /var/log/auth.log alpine-sshd.local
