@@ -14,13 +14,6 @@ echo $LASTFSCK - Last fsck check
 echo $FSCK - Now
 echo $FSCK > /var/log/fscheck
 
-if [ "$FSCK" != "$LASTFSCK" ]; then
-  STATUS=`cat /var/log/status`
-  CHANGED=`find / -mmin -5 -not -path "/sys/*" -not -path "/proc/*" | xargs ls -al`
-  echo -e "To: ${EMAIL}\nSubject: Alpine SSH Alert\nFrom:${EMAIL}\n\n${STATUS}\n\n${CHANGED}\n" | sendmail -t
-fi
-
-
 echo
 echo processes
 echo =================================
@@ -42,3 +35,10 @@ echo =================================
 iptables -L
 
 fail2ban-regex --print-all-missed --print-all-ignored -d "\[%Y-%m-%d %H:%M:%S\] " /var/log/auth.log alpine-sshd.local
+
+
+if [ "$FSCK" != "$LASTFSCK" ]; then
+  STATUS=`cat /var/log/status`
+  CHANGED=`find / -mmin -5 -not -path "/sys/*" -not -path "/proc/*" | xargs ls -al`
+  echo -e "To: ${EMAIL}\nSubject: Alpine SSH Alert\nFrom:${EMAIL}\n\n${STATUS}\n\nFiles changed:\n======================\n${CHANGED}\n" | sendmail -t
+fi
