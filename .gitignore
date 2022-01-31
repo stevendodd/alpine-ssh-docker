@@ -11,3 +11,4 @@ src/scripts/firewall-rules.sh
 docker-qnap.sh
 /image.key
 /image.drawio
+/image.drawio2
